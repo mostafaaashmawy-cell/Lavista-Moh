@@ -7,52 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const WHATSAPP_NUMBER = '201003565002';
 
   /* ==========================================================================
-     1. STICKY NAVBAR SCROLL STATE
-     ========================================================================== */
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-
-  /* ==========================================================================
-     2. MOBILE MENU TOGGLE
-     ========================================================================== */
-  const mobileToggle = document.getElementById('mobile-toggle');
-  const mainNav = document.getElementById('main-nav');
-
-  if (mobileToggle && mainNav) {
-    mobileToggle.addEventListener('click', () => {
-      mainNav.classList.toggle('open');
-      const spans = mobileToggle.querySelectorAll('span');
-      if (mainNav.classList.contains('open')) {
-        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
-      } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-      }
-    });
-
-    // Close mobile nav when clicking nav links
-    mainNav.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mainNav.classList.remove('open');
-        const spans = mobileToggle.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-      });
-    });
-  }
-
-  /* ==========================================================================
-     3. INTERACTIVE PROJECT FILTER TABS
+     1. INTERACTIVE PROJECT FILTER TABS
      ========================================================================== */
   const filterBtns = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
@@ -84,11 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     4. MODAL TRIGGERING & AUTO-PROJECT SELECTION
+     2. MODAL TRIGGERING & AUTO-PROJECT SELECTION
      ========================================================================== */
   const modalBackdrop = document.getElementById('inquiry-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
-  const modalProjectSelect = document.getElementById('modal-project');
+  const modalProjectHidden = document.getElementById('modal-project-hidden');
   const modalProjectTitle = document.getElementById('modal-project-title');
   const openModalBtns = document.querySelectorAll('.open-modal-btn');
 
@@ -97,20 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
       modalBackdrop.classList.add('active');
       modalBackdrop.setAttribute('aria-hidden', 'false');
 
-      if (modalProjectSelect && projectName) {
-        // Try to match select options
-        let matched = false;
-        for (let i = 0; i < modalProjectSelect.options.length; i++) {
-          if (modalProjectSelect.options[i].value.toLowerCase().includes(projectName.toLowerCase()) ||
-              modalProjectSelect.options[i].text.toLowerCase().includes(projectName.toLowerCase())) {
-            modalProjectSelect.selectedIndex = i;
-            matched = true;
-            break;
-          }
-        }
-        if (!matched) {
-          modalProjectSelect.value = 'All La Vista Projects';
-        }
+      if (modalProjectHidden) {
+        modalProjectHidden.value = projectName || 'All Developments';
       }
 
       if (modalProjectTitle) {
@@ -154,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     5. ASYNCHRONOUS WEB3FORMS SUBMISSION HANDLER
+     3. ASYNCHRONOUS WEB3FORMS SUBMISSION HANDLER
      ========================================================================== */
   function handleFormSubmission(formElement, submitBtnElement, feedbackElement) {
     if (!formElement) return;
@@ -179,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const countryCode = formData.get('country_code') || '+20';
       const rawPhone = formData.get('phone') || '';
       const fullPhone = `${countryCode} ${rawPhone}`;
-      const projectName = formData.get('project_interest') || 'General Inquiry';
+      const projectName = formData.get('project_interest') || 'General La Vista Inquiry';
       const clientName = formData.get('name') || '';
 
       formData.set('phone', fullPhone);
@@ -203,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (response.status === 200 || result.success) {
           // Success
           feedbackElement.className = 'form-feedback success';
-          feedbackElement.innerHTML = `<strong>Thank you, ${escapeHtml(clientName)}!</strong><br />Your request for <em>${escapeHtml(projectName)}</em> has been received. Our senior advisor is preparing your files and will message you on WhatsApp shortly.`;
+          feedbackElement.innerHTML = `<strong>Thank you, ${escapeHtml(clientName)}!</strong><br />Your request has been received. Our senior property advisor is preparing your files and will message you on WhatsApp shortly.`;
           feedbackElement.classList.remove('hidden');
 
           formElement.reset();
@@ -215,22 +158,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Automatically offer direct WhatsApp continuation
           setTimeout(() => {
-            const waMsg = encodeURIComponent(`Hello, I just registered on the website for ${projectName}. My name is ${clientName}. Please send me the brochure and price list.`);
+            const waMsg = encodeURIComponent(`Hello, I just requested project details for La Vista Developments. My name is ${clientName}. Please share the floor plans and price sheet.`);
             const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`;
             window.open(waUrl, '_blank');
-          }, 2500);
+          }, 2200);
 
         } else {
           // Error response from API
           feedbackElement.className = 'form-feedback error';
-          feedbackElement.textContent = result.message || 'Something went wrong. Please check your details or contact us directly on WhatsApp.';
+          feedbackElement.textContent = result.message || 'Something went wrong. Please check your details or connect with us directly on WhatsApp.';
           feedbackElement.classList.remove('hidden');
         }
 
       } catch (err) {
         console.error('Submission Error:', err);
         feedbackElement.className = 'form-feedback error';
-        feedbackElement.textContent = 'Connection error. Please contact us directly via WhatsApp (+201003565002).';
+        feedbackElement.textContent = 'Connection error. Please connect with us directly on WhatsApp.';
         feedbackElement.classList.remove('hidden');
       } finally {
         submitBtnElement.disabled = false;
