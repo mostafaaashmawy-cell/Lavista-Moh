@@ -118,55 +118,65 @@ button, input, select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  background: var(--whatsapp-gradient);
-  border-radius: 5px;
+  gap: 7px;
+  padding: 9px 18px;
+  background: #25D366;
+  border-radius: 4px;
   color: #FFFFFF;
   font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  transition: var(--transition-fast);
-  box-shadow: 0 3px 12px var(--whatsapp-glow);
+  transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 10px rgba(37, 211, 102, 0.35);
   line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .btn-wa-compact:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-  box-shadow: 0 5px 18px var(--whatsapp-glow);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
 }
 
 .btn-card-wa-compact {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
+  gap: 7px;
   width: 100%;
-  padding: 0.65rem 1rem;
-  border-radius: 5px;
-  background: var(--whatsapp-gradient);
+  padding: 10px 16px;
+  border-radius: 4px;
+  background: #25D366;
   color: #FFFFFF;
   font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  box-shadow: 0 3px 12px var(--whatsapp-glow);
-  transition: var(--transition-fast);
+  box-shadow: 0 2px 10px rgba(37, 211, 102, 0.35);
+  transition: filter 0.2s ease, transform 0.2s ease;
   line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .btn-card-wa-compact:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 
 .icon-wa-sm {
-  width: 15px;
-  height: 15px;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px;
+  min-height: 16px;
+  max-width: 16px;
+  max-height: 16px;
   fill: #FFFFFF;
   flex-shrink: 0;
+  display: block;
+  overflow: hidden;
 }
 
 /* ==========================================================================
@@ -1252,16 +1262,17 @@ button, input, select {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  z-index: 999;
-  width: 48px;
-  height: 48px;
+  z-index: 9999;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: var(--whatsapp-gradient);
+  background: #25D366;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
   transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
 }
 
 .floating-wa-compact:hover {
@@ -1269,9 +1280,15 @@ button, input, select {
 }
 
 .wa-compact-icon {
-  width: 24px;
-  height: 24px;
+  width: 26px !important;
+  height: 26px !important;
+  min-width: 26px;
+  min-height: 26px;
+  max-width: 26px;
+  max-height: 26px;
   fill: #FFFFFF;
+  display: block;
+  flex-shrink: 0;
 }
 
 .wa-compact-pulse {
