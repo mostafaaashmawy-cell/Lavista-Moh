@@ -195,6 +195,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalFeedback = document.getElementById('modal-feedback');
   handleFormSubmission(modalForm, modalSubmitBtn, modalFeedback);
 
+  /* ==========================================================================
+     4. WHATSAPP CLICK CONVERSION TRACKING (GOOGLE ADS)
+     ========================================================================== */
+  document.addEventListener('click', (e) => {
+    const waLink = e.target.closest('a[href*="wa.me"], a[href*="whatsapp.com"]');
+    if (waLink) {
+      if (typeof window.gtag_report_conversion === 'function') {
+        window.gtag_report_conversion();
+      }
+    }
+  });
+
   function escapeHtml(text) {
     if (!text) return '';
     return text

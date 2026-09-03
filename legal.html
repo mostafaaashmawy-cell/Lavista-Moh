@@ -21,6 +21,25 @@
     gtag('js', new Date());
 
     gtag('config', 'AW-18387364928');
+
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined' && url) {
+          window.location = url;
+        }
+      };
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18387364928/B51iCOCosO0cEMDY479E',
+          'value': 1.0,
+          'currency': 'EGP',
+          'event_callback': callback
+        });
+      } else if (typeof url != 'undefined' && url) {
+        window.location = url;
+      }
+      return false;
+    }
   </script>
   <style>
     .legal-page {
