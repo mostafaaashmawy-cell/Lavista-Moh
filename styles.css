@@ -746,16 +746,16 @@ button, input, select {
 
 .townside-table-wrapper {
   width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
   background: #0d1117;
   margin-top: 0.5rem;
+  overflow: hidden;
 }
 
 .townside-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   font-family: var(--font-sans);
   font-size: 0.82rem;
@@ -768,28 +768,38 @@ button, input, select {
 }
 
 .townside-table th {
-  padding: 0.65rem 0.85rem;
+  padding: 0.65rem 0.65rem;
   color: #c9d1d9;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 0.02em;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.townside-table th:last-child {
-  border-right: none;
+.townside-table th:nth-child(1),
+.townside-table td:nth-child(1) {
+  width: 36%;
+  text-align: left;
+}
+
+.townside-table th:nth-child(2),
+.townside-table td:nth-child(2) {
+  width: 22%;
+  text-align: center;
+}
+
+.townside-table th:nth-child(3),
+.townside-table td:nth-child(3) {
+  width: 42%;
   text-align: right;
+  border-right: none;
 }
 
 .townside-table td {
-  padding: 0.65rem 0.85rem;
+  padding: 0.65rem 0.65rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   vertical-align: middle;
-}
-
-.townside-table td:last-child {
-  border-right: none;
 }
 
 .townside-table tbody tr:last-child td {
@@ -809,6 +819,7 @@ button, input, select {
 .townside-table .cell-area {
   color: #c9d1d9;
   white-space: nowrap;
+  text-align: center;
 }
 
 .townside-table .cell-price {
@@ -1485,7 +1496,7 @@ button, input, select {
   }
 
   .special-content-col {
-    padding: 1.6rem 1.2rem;
+    padding: 1.5rem 1rem;
   }
 
   .spec-grid-2col {
@@ -1501,6 +1512,10 @@ button, input, select {
 
   .special-price-action-row .btn-wa-compact {
     width: 100%;
+    padding: 10px 10px;
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+    gap: 6px;
   }
 
   .why-us-grid {
@@ -1527,7 +1542,7 @@ button, input, select {
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 1rem;
+    padding: 0 0.85rem;
   }
 
   .hero-heading {
@@ -1538,6 +1553,10 @@ button, input, select {
     font-size: 1.1rem;
   }
 
+  .special-content-col {
+    padding: 1.25rem 0.65rem;
+  }
+
   .phone-input-row {
     flex-direction: column;
     gap: 0.5rem;
@@ -1545,8 +1564,16 @@ button, input, select {
 
   .townside-table th,
   .townside-table td {
-    padding: 0.55rem 0.6rem;
-    font-size: 0.74rem;
+    padding: 0.5rem 0.35rem;
+    font-size: 0.71rem;
+  }
+
+  .townside-table .cell-model {
+    font-size: 0.69rem;
+  }
+
+  .townside-table .cell-price {
+    font-size: 0.71rem;
   }
 
   .country-select {
